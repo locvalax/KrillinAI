@@ -99,7 +99,8 @@ func (c *Config) Validate() error {
 
 // setDefaults populates sensible default values.
 func setDefaults(v *viper.Viper) {
-	v.SetDefault("server.host", "0.0.0.0")
+	// Bind to localhost by default instead of all interfaces — safer for local dev.
+	v.SetDefault("server.host", "127.0.0.1")
 	v.SetDefault("server.port", 8080)
 	v.SetDefault("ai.openai_base_url", "https://api.openai.com/v1")
 	v.SetDefault("ai.model", "gpt-4o")
@@ -107,5 +108,5 @@ func setDefaults(v *viper.Viper) {
 	v.SetDefault("storage.output_dir", "output")
 	v.SetDefault("storage.temp_dir", "temp")
 	v.SetDefault("log.level", "info")
-	v.SetDefault("log.format", "text")
+	v.SetDefault("log.format", "json")
 }
