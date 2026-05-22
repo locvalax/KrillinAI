@@ -31,7 +31,8 @@ and dubbing subtitles for videos using state-of-the-art AI models.`,
 
 	// Global flags
 	rootCmd.PersistentFlags().StringP("config", "c", "", "Path to configuration file")
-	rootCmd.PersistentFlags().StringP("log-level", "l", "info", "Log level (debug, info, warn, error)")
+	// Default to debug level for easier local development in my fork
+	rootCmd.PersistentFlags().StringP("log-level", "l", "debug", "Log level (debug, info, warn, error)")
 
 	// Version subcommand
 	versionCmd := &cobra.Command{
