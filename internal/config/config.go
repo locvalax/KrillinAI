@@ -101,12 +101,14 @@ func (c *Config) Validate() error {
 func setDefaults(v *viper.Viper) {
 	// Bind to localhost by default instead of all interfaces — safer for local dev.
 	v.SetDefault("server.host", "127.0.0.1")
-	v.SetDefault("server.port", 8080)
+	// Using port 9090 to avoid conflicts with other local services on 8080.
+	v.SetDefault("server.port", 9090)
 	v.SetDefault("ai.openai_base_url", "https://api.openai.com/v1")
-	v.SetDefault("ai.model", "gpt-4o")
+	// Prefer gpt-4o-mini for personal use — cheaper and fast enough for my needs.
+	v.SetDefault("ai.model", "gpt-4o-mini")
 	v.SetDefault("ai.whisper_model", "whisper-1")
+	v.SetDefault("log.level", "info")
+	v.SetDefault("log.format", "text")
 	v.SetDefault("storage.output_dir", "output")
 	v.SetDefault("storage.temp_dir", "temp")
-	v.SetDefault("log.level", "info")
-	v.SetDefault("log.format", "json")
 }
